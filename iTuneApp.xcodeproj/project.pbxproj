@@ -1,0 +1,478 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7E37ED611A026D8800D21457 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E37ED601A026D8800D21457 /* Foundation.framework */; };
+		7E37ED631A026D8800D21457 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E37ED621A026D8800D21457 /* CoreGraphics.framework */; };
+		7E37ED651A026D8800D21457 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E37ED641A026D8800D21457 /* UIKit.framework */; };
+		7E37ED6B1A026D8800D21457 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E37ED691A026D8800D21457 /* InfoPlist.strings */; };
+		7E37ED6D1A026D8800D21457 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E37ED6C1A026D8800D21457 /* main.m */; };
+		7E37ED711A026D8800D21457 /* iTuneAppAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E37ED701A026D8800D21457 /* iTuneAppAppDelegate.m */; };
+		7E37ED741A026D8800D21457 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E37ED721A026D8800D21457 /* Main.storyboard */; };
+		7E37ED771A026D8800D21457 /* iTuneAppMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E37ED761A026D8800D21457 /* iTuneAppMasterViewController.m */; };
+		7E37ED7A1A026D8800D21457 /* iTuneAppDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E37ED791A026D8800D21457 /* iTuneAppDetailViewController.m */; };
+		7E37ED7C1A026D8800D21457 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E37ED7B1A026D8800D21457 /* Images.xcassets */; };
+		7E37ED831A026D8800D21457 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E37ED821A026D8800D21457 /* XCTest.framework */; };
+		7E37ED841A026D8800D21457 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E37ED601A026D8800D21457 /* Foundation.framework */; };
+		7E37ED851A026D8800D21457 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E37ED641A026D8800D21457 /* UIKit.framework */; };
+		7E37ED8D1A026D8800D21457 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E37ED8B1A026D8800D21457 /* InfoPlist.strings */; };
+		7E37ED8F1A026D8800D21457 /* iTuneAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E37ED8E1A026D8800D21457 /* iTuneAppTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7E37ED861A026D8800D21457 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E37ED551A026D8800D21457 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E37ED5C1A026D8800D21457;
+			remoteInfo = iTuneApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		7E37ED5D1A026D8800D21457 /* iTuneApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTuneApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E37ED601A026D8800D21457 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7E37ED621A026D8800D21457 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7E37ED641A026D8800D21457 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7E37ED681A026D8800D21457 /* iTuneApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iTuneApp-Info.plist"; sourceTree = "<group>"; };
+		7E37ED6A1A026D8800D21457 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7E37ED6C1A026D8800D21457 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7E37ED6E1A026D8800D21457 /* iTuneApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iTuneApp-Prefix.pch"; sourceTree = "<group>"; };
+		7E37ED6F1A026D8800D21457 /* iTuneAppAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iTuneAppAppDelegate.h; sourceTree = "<group>"; };
+		7E37ED701A026D8800D21457 /* iTuneAppAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iTuneAppAppDelegate.m; sourceTree = "<group>"; };
+		7E37ED731A026D8800D21457 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7E37ED751A026D8800D21457 /* iTuneAppMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iTuneAppMasterViewController.h; sourceTree = "<group>"; };
+		7E37ED761A026D8800D21457 /* iTuneAppMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iTuneAppMasterViewController.m; sourceTree = "<group>"; };
+		7E37ED781A026D8800D21457 /* iTuneAppDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iTuneAppDetailViewController.h; sourceTree = "<group>"; };
+		7E37ED791A026D8800D21457 /* iTuneAppDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iTuneAppDetailViewController.m; sourceTree = "<group>"; };
+		7E37ED7B1A026D8800D21457 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		7E37ED811A026D8800D21457 /* iTuneAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iTuneAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E37ED821A026D8800D21457 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		7E37ED8A1A026D8800D21457 /* iTuneAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iTuneAppTests-Info.plist"; sourceTree = "<group>"; };
+		7E37ED8C1A026D8800D21457 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7E37ED8E1A026D8800D21457 /* iTuneAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iTuneAppTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7E37ED5A1A026D8800D21457 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E37ED631A026D8800D21457 /* CoreGraphics.framework in Frameworks */,
+				7E37ED651A026D8800D21457 /* UIKit.framework in Frameworks */,
+				7E37ED611A026D8800D21457 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E37ED7E1A026D8800D21457 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E37ED831A026D8800D21457 /* XCTest.framework in Frameworks */,
+				7E37ED851A026D8800D21457 /* UIKit.framework in Frameworks */,
+				7E37ED841A026D8800D21457 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7E37ED541A026D8800D21457 = {
+			isa = PBXGroup;
+			children = (
+				7E37ED661A026D8800D21457 /* iTuneApp */,
+				7E37ED881A026D8800D21457 /* iTuneAppTests */,
+				7E37ED5F1A026D8800D21457 /* Frameworks */,
+				7E37ED5E1A026D8800D21457 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7E37ED5E1A026D8800D21457 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7E37ED5D1A026D8800D21457 /* iTuneApp.app */,
+				7E37ED811A026D8800D21457 /* iTuneAppTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7E37ED5F1A026D8800D21457 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7E37ED601A026D8800D21457 /* Foundation.framework */,
+				7E37ED621A026D8800D21457 /* CoreGraphics.framework */,
+				7E37ED641A026D8800D21457 /* UIKit.framework */,
+				7E37ED821A026D8800D21457 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7E37ED661A026D8800D21457 /* iTuneApp */ = {
+			isa = PBXGroup;
+			children = (
+				7E37ED6F1A026D8800D21457 /* iTuneAppAppDelegate.h */,
+				7E37ED701A026D8800D21457 /* iTuneAppAppDelegate.m */,
+				7E37ED721A026D8800D21457 /* Main.storyboard */,
+				7E37ED751A026D8800D21457 /* iTuneAppMasterViewController.h */,
+				7E37ED761A026D8800D21457 /* iTuneAppMasterViewController.m */,
+				7E37ED781A026D8800D21457 /* iTuneAppDetailViewController.h */,
+				7E37ED791A026D8800D21457 /* iTuneAppDetailViewController.m */,
+				7E37ED7B1A026D8800D21457 /* Images.xcassets */,
+				7E37ED671A026D8800D21457 /* Supporting Files */,
+			);
+			path = iTuneApp;
+			sourceTree = "<group>";
+		};
+		7E37ED671A026D8800D21457 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7E37ED681A026D8800D21457 /* iTuneApp-Info.plist */,
+				7E37ED691A026D8800D21457 /* InfoPlist.strings */,
+				7E37ED6C1A026D8800D21457 /* main.m */,
+				7E37ED6E1A026D8800D21457 /* iTuneApp-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7E37ED881A026D8800D21457 /* iTuneAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				7E37ED8E1A026D8800D21457 /* iTuneAppTests.m */,
+				7E37ED891A026D8800D21457 /* Supporting Files */,
+			);
+			path = iTuneAppTests;
+			sourceTree = "<group>";
+		};
+		7E37ED891A026D8800D21457 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7E37ED8A1A026D8800D21457 /* iTuneAppTests-Info.plist */,
+				7E37ED8B1A026D8800D21457 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7E37ED5C1A026D8800D21457 /* iTuneApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E37ED921A026D8800D21457 /* Build configuration list for PBXNativeTarget "iTuneApp" */;
+			buildPhases = (
+				7E37ED591A026D8800D21457 /* Sources */,
+				7E37ED5A1A026D8800D21457 /* Frameworks */,
+				7E37ED5B1A026D8800D21457 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iTuneApp;
+			productName = iTuneApp;
+			productReference = 7E37ED5D1A026D8800D21457 /* iTuneApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7E37ED801A026D8800D21457 /* iTuneAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E37ED951A026D8800D21457 /* Build configuration list for PBXNativeTarget "iTuneAppTests" */;
+			buildPhases = (
+				7E37ED7D1A026D8800D21457 /* Sources */,
+				7E37ED7E1A026D8800D21457 /* Frameworks */,
+				7E37ED7F1A026D8800D21457 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7E37ED871A026D8800D21457 /* PBXTargetDependency */,
+			);
+			name = iTuneAppTests;
+			productName = iTuneAppTests;
+			productReference = 7E37ED811A026D8800D21457 /* iTuneAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7E37ED551A026D8800D21457 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = iTuneApp;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "___FULLUSERNAME___";
+				TargetAttributes = {
+					7E37ED801A026D8800D21457 = {
+						TestTargetID = 7E37ED5C1A026D8800D21457;
+					};
+				};
+			};
+			buildConfigurationList = 7E37ED581A026D8800D21457 /* Build configuration list for PBXProject "iTuneApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7E37ED541A026D8800D21457;
+			productRefGroup = 7E37ED5E1A026D8800D21457 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7E37ED5C1A026D8800D21457 /* iTuneApp */,
+				7E37ED801A026D8800D21457 /* iTuneAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7E37ED5B1A026D8800D21457 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E37ED7C1A026D8800D21457 /* Images.xcassets in Resources */,
+				7E37ED6B1A026D8800D21457 /* InfoPlist.strings in Resources */,
+				7E37ED741A026D8800D21457 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E37ED7F1A026D8800D21457 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E37ED8D1A026D8800D21457 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7E37ED591A026D8800D21457 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E37ED771A026D8800D21457 /* iTuneAppMasterViewController.m in Sources */,
+				7E37ED7A1A026D8800D21457 /* iTuneAppDetailViewController.m in Sources */,
+				7E37ED711A026D8800D21457 /* iTuneAppAppDelegate.m in Sources */,
+				7E37ED6D1A026D8800D21457 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E37ED7D1A026D8800D21457 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E37ED8F1A026D8800D21457 /* iTuneAppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7E37ED871A026D8800D21457 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7E37ED5C1A026D8800D21457 /* iTuneApp */;
+			targetProxy = 7E37ED861A026D8800D21457 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7E37ED691A026D8800D21457 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7E37ED6A1A026D8800D21457 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7E37ED721A026D8800D21457 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7E37ED731A026D8800D21457 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		7E37ED8B1A026D8800D21457 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7E37ED8C1A026D8800D21457 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7E37ED901A026D8800D21457 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		7E37ED911A026D8800D21457 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7E37ED931A026D8800D21457 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iTuneApp/iTuneApp-Prefix.pch";
+				INFOPLIST_FILE = "iTuneApp/iTuneApp-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		7E37ED941A026D8800D21457 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iTuneApp/iTuneApp-Prefix.pch";
+				INFOPLIST_FILE = "iTuneApp/iTuneApp-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		7E37ED961A026D8800D21457 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iTuneApp.app/iTuneApp";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iTuneApp/iTuneApp-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "iTuneAppTests/iTuneAppTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		7E37ED971A026D8800D21457 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iTuneApp.app/iTuneApp";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iTuneApp/iTuneApp-Prefix.pch";
+				INFOPLIST_FILE = "iTuneAppTests/iTuneAppTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7E37ED581A026D8800D21457 /* Build configuration list for PBXProject "iTuneApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E37ED901A026D8800D21457 /* Debug */,
+				7E37ED911A026D8800D21457 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E37ED921A026D8800D21457 /* Build configuration list for PBXNativeTarget "iTuneApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E37ED931A026D8800D21457 /* Debug */,
+				7E37ED941A026D8800D21457 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		7E37ED951A026D8800D21457 /* Build configuration list for PBXNativeTarget "iTuneAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E37ED961A026D8800D21457 /* Debug */,
+				7E37ED971A026D8800D21457 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7E37ED551A026D8800D21457 /* Project object */;
+}
