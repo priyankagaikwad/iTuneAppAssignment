@@ -11,6 +11,16 @@
 @interface iTuneAppDetailViewController : UIViewController
 
 @property (strong, nonatomic) id detailItem;
+@property (weak, nonatomic) IBOutlet UIImageView *appIcon;
+@property (weak, nonatomic) IBOutlet UILabel *lblAppName;
+@property (weak, nonatomic) IBOutlet UILabel *lblArtist;
+@property (weak, nonatomic) IBOutlet UILabel *lblPrice;
+@property (weak, nonatomic) IBOutlet UIButton *btnLink;
+@property (weak, nonatomic) IBOutlet UILabel *lblCatagory;
+@property (weak, nonatomic) IBOutlet UILabel *lblReleaseDate;
+@property (weak, nonatomic) IBOutlet UILabel *lblRights;
 
-@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+@property (strong,nonatomic) NSString *appNameString, *rightString, *priceString, *artistString, *releaseDateString, *linkString, *categoryString;
+@property (strong,nonatomic) UIImage *iconImage;
+
 @end

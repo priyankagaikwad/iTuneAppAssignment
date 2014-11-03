@@ -7,12 +7,18 @@
 //
 
 #import "iTuneAppMasterViewController.h"
-
 #import "iTuneAppDetailViewController.h"
+#import "storeiTuneAppObject.h"
+#import "AppInfoObject.h"
+#import "ApplicationCell.h"
+#import "iTuneAppAppDelegate.h"
 
-@interface iTuneAppMasterViewController () {
-    NSMutableArray *_objects;
-}
+#define URL @"https://itunes.apple.com/us/rss/newfreeapplications/limit=2/json"
+
+@interface iTuneAppMasterViewController ()
+
+@property ( nonatomic,strong) storeiTuneAppObject *storeInfo;
+@property ( nonatomic,strong) NSURLSession *session;
 @end
 
 @implementation iTuneAppMasterViewController
@@ -25,27 +31,39 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    
+    NSURLSessionConfiguration *config = [ NSURLSessionConfiguration ephemeralSessionConfiguration];
+    _session = [NSURLSession sessionWithConfiguration : config];
+    
+    [self.tableView addSubview:_activity];
+    [self.tableView bringSubviewToFront:_activity];
+    _activity.center = self.tableView.center;
+    [_activity startAnimating];
+    [self parseJson];
+    [_activity hidesWhenStopped];
+    [_activity stopAnimating];
+}
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+- (void)parseJson
+{
+    NSURL *url = [[NSURL alloc] initWithString:URL];
+    
+    NSURLSessionDataTask *dataTask = [self.session dataTaskWithURL:url completionHandler : ^(NSData *iTuneData, NSURLResponse *response, NSError *error)
+                                      {
+                                          dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                                              _storeInfo = [[storeiTuneAppObject alloc] storeJsonData:iTuneData];
+                                              dispatch_async(dispatch_get_main_queue(),^{
+                                                  [self.tableView reloadData];
+                                              });
+                                          });
+                                      }];
+    [dataTask resume];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)insertNewObject:(id)sender
-{
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
-    }
-    [_objects insertObject:[NSDate date] atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 #pragma mark - Table View
@@ -57,56 +75,39 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _objects.count;
+    return _storeInfo.applicationInfoObjects.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-
-    NSDate *object = _objects[indexPath.row];
-    cell.textLabel.text = [object description];
+    // UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    ApplicationCell *cell = [[ApplicationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier : @"Cell"];
+    
+    AppInfoObject *appInfo = _storeInfo.applicationInfoObjects[indexPath.row];
+    cell.applicationObject = appInfo;
     return cell;
 }
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+    [self performSegueWithIdentifier:@"showDetail" sender:self];
 }
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_objects removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }
-}
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
+        
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = _objects[indexPath.row];
-        [[segue destinationViewController] setDetailItem:object];
+        AppInfoObject *appInfo = _storeInfo.applicationInfoObjects[indexPath.row];
+        iTuneAppDetailViewController *detailViewController = segue.destinationViewController;
+        
+        detailViewController.appNameString = appInfo.appName ;
+        detailViewController.iconImage = appInfo.appIcon;
+        detailViewController.artistString = appInfo.artist ;
+        detailViewController.priceString = appInfo.price;
+        detailViewController.releaseDateString = appInfo.releaseDate;
+        detailViewController.linkString = appInfo.link;
+        detailViewController.categoryString = appInfo.category;
+        detailViewController.rightString = appInfo.rights;
     }
 }
 

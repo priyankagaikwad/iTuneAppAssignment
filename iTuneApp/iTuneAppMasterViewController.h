@@ -10,4 +10,6 @@
 
 @interface iTuneAppMasterViewController : UITableViewController
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;
+
 @end

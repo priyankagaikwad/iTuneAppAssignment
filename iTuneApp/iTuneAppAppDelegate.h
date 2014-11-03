@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Reachability.h"
 
 @interface iTuneAppAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, assign) BOOL hasInternet;
 
+-(NSString *) stringFromStatus: (NetworkStatus) status;
 @end

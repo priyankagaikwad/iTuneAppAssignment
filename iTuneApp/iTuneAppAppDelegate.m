@@ -7,13 +7,66 @@
 //
 
 #import "iTuneAppAppDelegate.h"
+#import "Reachability.h"
 
 @implementation iTuneAppAppDelegate
 
+Reachability *reach;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    reach = [Reachability reachabilityForInternetConnection];
+    [reach startNotifier];
+    NetworkStatus status = [reach currentReachabilityStatus];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Internet Status" message:[self stringFromStatus:status] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+    [self reachabilityChanged:status];
     return YES;
+}
+
+- (NSString *)stringFromStatus:(NetworkStatus) status
+{
+    NSString *string;
+    switch (status)
+    {
+        case NotReachable:
+            string = @"No Connection";
+            _hasInternet = NO;
+            break;
+        case ReachableViaWiFi:
+            string = @"WiFi Connected";
+            _hasInternet = YES;
+            break;
+        case ReachableViaWWAN:
+            string = @"Connected";
+            _hasInternet = YES;
+            break;
+        default:
+            break;
+    }
+    return string;
+}
+
+- (void)reachabilityChanged:(NetworkStatus) status
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInterfaceWithReachability:) name:kReachabilityChangedNotification object:nil];
+    switch (status)
+    {
+        case NotReachable: _hasInternet = NO;
+            break;
+        case ReachableViaWiFi :_hasInternet = YES;
+            break;
+        case ReachableViaWWAN : _hasInternet = YES;
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)updateInterfaceWithReachability:(NSNotification *)notice
+{
+    NetworkStatus remoteHostStatus = [reach currentReachabilityStatus];
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Network Status" message:[self stringFromStatus:remoteHostStatus] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
