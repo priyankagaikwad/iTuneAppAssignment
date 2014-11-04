@@ -10,14 +10,15 @@
 #import "iTuneAppAppDelegate.h"
 
 NSData *offlineImageData;
+
 @implementation AppInfoObject
 
 iTuneAppAppDelegate *appDelegate;
 
-
 - (instancetype) initWithJsonData : (NSDictionary *)jsonInfo
 {
     NSDictionary *nameDictionary, *rightsDictionary, *priceDictionary, *artistDictionary, *releaseDateDictionary, *linkDictionary, *categoryDictionary, *subDictionary;
+    _imageDictionary = [[NSMutableDictionary alloc] init];
     
     nameDictionary = jsonInfo[@"im:name"];
     _appName = nameDictionary[@"label"];
@@ -66,12 +67,10 @@ iTuneAppAppDelegate *appDelegate;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
     NSString *imageName = [NSString stringWithFormat:@"%@%@",labelAsImageName,@".png"];
-    NSString *pathTosaveImage = [docPath stringByAppendingPathComponent:imageName];
-    
-    if (![fileManager fileExistsAtPath:pathTosaveImage]) {
+    _pathToSaveImage = [docPath stringByAppendingPathComponent:imageName];
+    if (![fileManager fileExistsAtPath:_pathToSaveImage]) {
         NSString *pathTosaveImage = [docPath stringByAppendingPathComponent:imageName];
         offlineImageData = [NSData dataWithContentsOfURL:imageUrl];
-        _appIcon = [UIImage imageWithData:offlineImageData];
         if (offlineImageData) {
             [offlineImageData writeToFile:pathTosaveImage atomically:YES];
         }
@@ -80,26 +79,12 @@ iTuneAppAppDelegate *appDelegate;
 
 - (void)fetchImage
 {
-    NSString *stringPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
-    NSArray * filePaths = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject] error:nil];
-    for(int i = 0;i<[filePaths count];i++)
-    {
-        NSString *filePath = [filePaths objectAtIndex:i];
-        if ([[filePath pathExtension] isEqualToString:@"jpg"] || [[filePath pathExtension] isEqualToString:@"png"] || [[filePath pathExtension] isEqualToString:@"PNG"]) {
-            NSString *imagePath = [[stringPath stringByAppendingFormat:@"/"] stringByAppendingFormat:@"%@",filePath];
-            
-            NSString* imageNames = [[imagePath lastPathComponent] stringByDeletingPathExtension];
-            if([_appName isEqualToString:imageNames]){
-                
-                NSData *data = [NSData dataWithContentsOfFile:imagePath];
-                if(data) {
-                    
-                    UIImage *image = [UIImage imageWithData:data];
-                    _appIcon = image;
-                    break;
-                }
-            }
-        }
+     NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    _imageDictionary = [NSMutableDictionary dictionaryWithContentsOfFile:[docPath stringByAppendingPathComponent:@"imageDictionary.txt"]];
+    NSData *data = [NSData dataWithContentsOfFile:[_imageDictionary valueForKey:_imageURL]];
+    if(data) {
+        UIImage *image = [UIImage imageWithData:data];
+        _appIcon = image;
     }
 }
 

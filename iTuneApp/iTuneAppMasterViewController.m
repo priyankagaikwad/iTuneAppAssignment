@@ -40,8 +40,7 @@
     _activity.center = self.tableView.center;
     [_activity startAnimating];
     [self parseJson];
-    [_activity hidesWhenStopped];
-    [_activity stopAnimating];
+
 }
 
 - (void)parseJson
@@ -80,6 +79,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [_activity hidesWhenStopped];
+    [_activity stopAnimating];
     // UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     ApplicationCell *cell = [[ApplicationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier : @"Cell"];
     

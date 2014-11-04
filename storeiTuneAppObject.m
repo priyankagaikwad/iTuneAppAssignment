@@ -20,7 +20,7 @@ iTuneAppAppDelegate *appDelegate;
     appDelegate = [[UIApplication sharedApplication] delegate];
     
     NSString *pathString = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    NSString *filePath =[pathString stringByAppendingFormat:@"/iTuneData.json"];
+    NSString *filePathToStoreJson =[pathString stringByAppendingFormat:@"/iTuneData.json"];
     NSDictionary *allJsonData = [NSJSONSerialization JSONObjectWithData:iTuneData options:NSJSONReadingAllowFragments error:nil];
     
     NSDictionary *feedDictionary;
@@ -28,27 +28,24 @@ iTuneAppAppDelegate *appDelegate;
                 feedDictionary = allJsonData[@"feed"];
     }
     else {
-    //if (filePath)
-    {
-            feedDictionary = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
+             feedDictionary = [NSMutableDictionary dictionaryWithContentsOfFile:filePathToStoreJson];
     }
-//        else {
-//            
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Network" message:@"No data available for offline mode!!!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//            [alert show];
-//        }
-        
-    }
-    [feedDictionary writeToFile:filePath atomically:YES];
+    [feedDictionary writeToFile:filePathToStoreJson atomically:YES];
     NSArray *entry = feedDictionary[@"entry"];
-    
+    NSMutableDictionary *imageDictionary = [[NSMutableDictionary alloc] init];
     _applicationInfoObjects = [NSMutableArray array];
-    for (NSDictionary *info in entry)
-    {
+    for (NSDictionary *info in entry) {
+        
         AppInfoObject *appInfoObj = [[AppInfoObject alloc] initWithJsonData:info];
         [_applicationInfoObjects addObject:appInfoObj];
+        [imageDictionary setValue:appInfoObj.pathToSaveImage forKey:appInfoObj.imageURL];
+        
     }
-
+    if(appDelegate.hasInternet) {
+        
+    NSString *filePathToStoreImageDictionry = [pathString stringByAppendingFormat:@"/imageDictionary.txt"];
+    [imageDictionary writeToFile:filePathToStoreImageDictionry atomically:YES];    
+    }
     return self;
 }
 

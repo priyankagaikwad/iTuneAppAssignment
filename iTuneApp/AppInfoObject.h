@@ -10,8 +10,9 @@
 
 @interface AppInfoObject : NSObject
 
-@property (nonatomic,strong) NSString *appName, *imageURL, *rights, *link, *price, *artist, *category, *releaseDate, *downloadImages,*directoryContents;
+@property (nonatomic,strong) NSString *appName, *imageURL, *rights, *link, *price, *artist, *category, *releaseDate, *downloadImages,*directoryContents,*pathToSaveImage;
 @property (nonatomic,strong) UIImage *appIcon;
+@property (nonatomic,strong) NSMutableDictionary *imageDictionary;
 
 - (instancetype)initWithJsonData:(NSDictionary *) jsonInfo;
 - (void)downloadImage:(NSURL *)imageUrl andSaveAs:(NSString *)labelAsImageName;
