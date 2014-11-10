@@ -15,6 +15,8 @@
 
 #define URL @"https://itunes.apple.com/us/rss/newfreeapplications/limit=2/json"
 
+iTuneAppAppDelegate *appDelegate;
+
 @interface iTuneAppMasterViewController ()
 
 @property ( nonatomic,strong) storeiTuneAppObject *storeInfo;
@@ -40,23 +42,23 @@
     _activity.center = self.tableView.center;
     [_activity startAnimating];
     [self parseJson];
-
+    
 }
 
 - (void)parseJson
 {
     NSURL *url = [[NSURL alloc] initWithString:URL];
-    
     NSURLSessionDataTask *dataTask = [self.session dataTaskWithURL:url completionHandler : ^(NSData *iTuneData, NSURLResponse *response, NSError *error)
                                       {
                                           dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                              _storeInfo = [[storeiTuneAppObject alloc] storeJsonData:iTuneData];
+                                              _storeInfo = [[storeiTuneAppObject alloc] initWithJsonData:iTuneData];
                                               dispatch_async(dispatch_get_main_queue(),^{
                                                   [self.tableView reloadData];
                                               });
                                           });
                                       }];
     [dataTask resume];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,13 +83,18 @@
 {
     [_activity hidesWhenStopped];
     [_activity stopAnimating];
-    // UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    ApplicationCell *cell = [[ApplicationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier : @"Cell"];
+    ApplicationCell *cell = [[ApplicationCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier : @"Cell"];
     
     AppInfoObject *appInfo = _storeInfo.applicationInfoObjects[indexPath.row];
     cell.applicationObject = appInfo;
     return cell;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    return 66;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self performSegueWithIdentifier:@"showDetail" sender:self];

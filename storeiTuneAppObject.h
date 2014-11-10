@@ -11,8 +11,8 @@
 @interface storeiTuneAppObject : NSObject
 
 
-@property (nonatomic) NSMutableArray *applicationInfoObjects;
+@property (nonatomic,strong) NSMutableArray *applicationInfoObjects;
 
-- (instancetype)storeJsonData:(NSData *) allJsonData;
+- (instancetype)initWithJsonData:(NSData *) allJsonData;
 
 @end

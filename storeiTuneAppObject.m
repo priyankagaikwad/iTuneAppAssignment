@@ -15,36 +15,49 @@
 
 iTuneAppAppDelegate *appDelegate;
 
-- (instancetype)storeJsonData:(NSData *)iTuneData
+- (instancetype)initWithJsonData:(NSData *)iTuneData
 {
     appDelegate = [[UIApplication sharedApplication] delegate];
     
-    NSString *pathString = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    NSString *filePathToStoreJson =[pathString stringByAppendingFormat:@"/iTuneData.json"];
-    NSDictionary *allJsonData = [NSJSONSerialization JSONObjectWithData:iTuneData options:NSJSONReadingAllowFragments error:nil];
     
+    NSString *pathString = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSString *filePathToStoreJson =[pathString stringByAppendingFormat:@"/iTuneData.plist"];
+    
+    _applicationInfoObjects = [[NSMutableArray alloc] init];
     NSDictionary *feedDictionary;
-    if (appDelegate.hasInternet)  {
-                feedDictionary = allJsonData[@"feed"];
-    }
-    else {
-             feedDictionary = [NSMutableDictionary dictionaryWithContentsOfFile:filePathToStoreJson];
-    }
-    [feedDictionary writeToFile:filePathToStoreJson atomically:YES];
-    NSArray *entry = feedDictionary[@"entry"];
-    NSMutableDictionary *imageDictionary = [[NSMutableDictionary alloc] init];
-    _applicationInfoObjects = [NSMutableArray array];
-    for (NSDictionary *info in entry) {
+    
+    
+    //  NSString *pathString = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    //  NSString *filePathToStoreJson = [pathString stringByAppendingFormat:@"/iTuneData.plist"];
+    //NSMutableArray *appInfoAllObjects = [NSMutableArray array];
+    // appInfoAllObjects = [NSKeyedUnarchiver unarchiveObjectWithFile:filePathToStoreJson];
+    
+    
+    //if(appInfoAllObjects != nil)  {
+    _applicationInfoObjects = [NSKeyedUnarchiver unarchiveObjectWithFile:filePathToStoreJson];
+    
+    //}
+    
+    if(appDelegate.hasInternet)
+    {
+        NSDictionary *allJsonData = [NSJSONSerialization JSONObjectWithData:iTuneData options:NSJSONReadingAllowFragments error:nil];
         
-        AppInfoObject *appInfoObj = [[AppInfoObject alloc] initWithJsonData:info];
-        [_applicationInfoObjects addObject:appInfoObj];
-        [imageDictionary setValue:appInfoObj.pathToSaveImage forKey:appInfoObj.imageURL];
+        if (appDelegate.hasInternet)  {
+            feedDictionary = allJsonData[@"feed"];
+        }
         
-    }
-    if(appDelegate.hasInternet) {
+        NSArray *entry = feedDictionary[@"entry"];
         
-    NSString *filePathToStoreImageDictionry = [pathString stringByAppendingFormat:@"/imageDictionary.txt"];
-    [imageDictionary writeToFile:filePathToStoreImageDictionry atomically:YES];    
+        NSMutableArray *appInfoAllObjects = [[NSMutableArray alloc]init];
+        
+        for (NSDictionary *info in entry) {
+            
+            AppInfoObject *appInfoObj = [[AppInfoObject alloc] initWithJsonData:info];
+            
+            [appInfoAllObjects addObject:appInfoObj ];
+            
+        }
+        [NSKeyedArchiver archiveRootObject:appInfoAllObjects toFile:filePathToStoreJson];
     }
     return self;
 }

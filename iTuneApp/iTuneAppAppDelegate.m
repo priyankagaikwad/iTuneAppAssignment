@@ -14,6 +14,19 @@
 Reachability *reach;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    _imageDictionary = [[NSMutableDictionary alloc] init];
+    _loadimageDictionary = [[NSMutableDictionary alloc] init];
+
+    NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    _loadimageDictionary = [NSMutableDictionary dictionaryWithContentsOfFile:[docPath stringByAppendingPathComponent:@"imageDictionary.plist"]];
+    _filePathToStoreImageDictionry = [docPath stringByAppendingFormat:@"/imageDictionary.plist"];
+
+//    NSString *pathString = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+//    NSString *filePathToStoreJson = [pathString stringByAppendingFormat:@"/iTuneData"];
+//    _appInfoAllObjects = [NSMutableArray array];
+//    _appInfoAllObjects = [NSKeyedUnarchiver unarchiveObjectWithFile:filePathToStoreJson];
+//    
+    //Internet Reachability
     reach = [Reachability reachabilityForInternetConnection];
     [reach startNotifier];
     NetworkStatus status = [reach currentReachabilityStatus];
@@ -33,7 +46,7 @@ Reachability *reach;
             _hasInternet = NO;
             break;
         case ReachableViaWiFi:
-            string = @"WiFi Connected";
+            string = @"Connected";
             _hasInternet = YES;
             break;
         case ReachableViaWWAN:
@@ -77,7 +90,11 @@ Reachability *reach;
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    NSString *pathString = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    
+    _filePathToStoreImageDictionry = [pathString stringByAppendingFormat:@"/imageDictionary.plist"];
+    [_imageDictionary writeToFile:_filePathToStoreImageDictionry atomically:YES];
+        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
@@ -93,6 +110,7 @@ Reachability *reach;
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 

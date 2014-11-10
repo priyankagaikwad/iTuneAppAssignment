@@ -18,7 +18,6 @@ iTuneAppAppDelegate *appDelegate;
 - (instancetype) initWithJsonData : (NSDictionary *)jsonInfo
 {
     NSDictionary *nameDictionary, *rightsDictionary, *priceDictionary, *artistDictionary, *releaseDateDictionary, *linkDictionary, *categoryDictionary, *subDictionary;
-    _imageDictionary = [[NSMutableDictionary alloc] init];
     
     nameDictionary = jsonInfo[@"im:name"];
     _appName = nameDictionary[@"label"];
@@ -26,16 +25,6 @@ iTuneAppAppDelegate *appDelegate;
     NSArray *images = jsonInfo[@"im:image"];
     NSDictionary *imageLogoDictionary = [images objectAtIndex:0];
     _imageURL = imageLogoDictionary[@"label"];
-    //Download image for offline mode
-    [self downloadImage:[[NSURL alloc] initWithString:_imageURL ] andSaveAs:nameDictionary[@"label"]];
-    
-    if (appDelegate.hasInternet) {
-        _appIcon = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_imageURL]]];
-        
-    }
-    else {
-        [self fetchImage];
-    }
     
     artistDictionary = jsonInfo[@"im:artist"];
     _artist = artistDictionary[@"label"];
@@ -62,30 +51,32 @@ iTuneAppAppDelegate *appDelegate;
     return self;
 }
 
-- (void)downloadImage:(NSURL *)imageUrl andSaveAs:(NSString *)labelAsImageName
-{
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    NSString *imageName = [NSString stringWithFormat:@"%@%@",labelAsImageName,@".png"];
-    _pathToSaveImage = [docPath stringByAppendingPathComponent:imageName];
-    if (![fileManager fileExistsAtPath:_pathToSaveImage]) {
-        NSString *pathTosaveImage = [docPath stringByAppendingPathComponent:imageName];
-        offlineImageData = [NSData dataWithContentsOfURL:imageUrl];
-        if (offlineImageData) {
-            [offlineImageData writeToFile:pathTosaveImage atomically:YES];
-        }
+- (id)initWithCoder:(NSCoder *)decoder {
+    self = [super init];
+    if (!self) {
+        return nil;
     }
+    self.appName = [decoder decodeObjectForKey:@"appName"];
+    self.imageURL = [decoder decodeObjectForKey:@"imageURL"];
+    self.rights = [decoder decodeObjectForKey:@"rights"];
+    self.link  = [decoder decodeObjectForKey:@"link"];
+    self.category = [decoder decodeObjectForKey:@"category"];
+    self.price = [decoder decodeObjectForKey:@"price"];
+    self.artist = [decoder decodeObjectForKey:@"artist"];
+    self.releaseDate = [decoder decodeObjectForKey:@"releaseDate"];
+    return self;
 }
 
-- (void)fetchImage
-{
-     NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    _imageDictionary = [NSMutableDictionary dictionaryWithContentsOfFile:[docPath stringByAppendingPathComponent:@"imageDictionary.txt"]];
-    NSData *data = [NSData dataWithContentsOfFile:[_imageDictionary valueForKey:_imageURL]];
-    if(data) {
-        UIImage *image = [UIImage imageWithData:data];
-        _appIcon = image;
-    }
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    
+    [encoder encodeObject:self.appName forKey:@"appName"];
+    [encoder encodeObject:self.imageURL forKey:@"imageURL"];
+    [encoder encodeObject:self.rights forKey:@"rights"];
+    [encoder encodeObject:self.link  forKey:@"link"];
+    [encoder encodeObject:self.category forKey:@"category"];
+    [encoder encodeObject:self.price forKey:@"price"];
+    [encoder encodeObject:self.artist forKey:@"artist"];
+    [encoder encodeObject:self.releaseDate forKey:@"releaseDate"];
 }
 
 @end

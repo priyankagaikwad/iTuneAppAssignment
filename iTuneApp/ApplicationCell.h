@@ -13,5 +13,8 @@
 @property (nonatomic,strong) AppInfoObject * applicationObject;
 @property (nonatomic,strong) UIImageView *appIcon;
 @property (nonatomic,strong) UILabel *appNameLabel;
+@property (nonatomic,strong) UILabel *subtitle;
+
+//- (void)downloadImage:(NSString *)imageUrl andSaveAs:(NSString *)labelAsImageName;
 
 @end
